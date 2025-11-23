@@ -14,7 +14,7 @@ SECRET_KEY = "django-insecure-#54y2+ac$bj*xyt1#zj(kp)x39%9-0w1(ik7jgq)gove9%tc(t
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 # 🌐 Hosts autorisés (pour le déploiement)
-ALLOWED_HOSTS = ['smartbin-production.up.railway.app', 'localhost']  # En 
+ALLOWED_HOSTS = ['*']  # En 
 production, mettez votre domaine ici
 
 # Application definition
