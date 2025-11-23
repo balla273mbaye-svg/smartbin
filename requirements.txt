@@ -1,10 +1,10 @@
-Django==4.2.7
-gunicorn==21.2.0
-whitenoise==6.6.0
-Pillow==10.1.0
-numpy==1.24.4
-gdown==4.7.1
-opencv-python-headless==4.8.1.78
-torch==2.1.0 --index-url https://download.pytorch.org/whl/cpu
-torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cpu
-ultralytics==8.0.196
+Django>=4.2,<5.0
+gunicorn
+whitenoise
+Pillow
+numpy
+gdown
+opencv-python-headless
+ultralytics
+torch
+torchvision
