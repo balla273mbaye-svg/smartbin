@@ -6,3 +6,8 @@ staticfiles/
 *.pt
 .env
 venv/
+*.avi
+*.mp4
+*.mov
+best.pt
+*.pt
