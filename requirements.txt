@@ -1,22 +1,11 @@
-# Django
-Django>=5.0,<6.0
-
-# Serveur
+torch==2.3.1+cpu
+ultralytics==8.0.152
+opencv-python-headless
+numpy
+Pillow
+Django<6.0,>=5.0
 gunicorn
 whitenoise
-
-# Images et traitement
-Pillow
-numpy
-opencv-python-headless
-
-# Deep Learning / Détection d'objets
-torch==2.3.1+cpu
-torchvision==0.14.1+cpu
-ultralytics==8.0.9
-
-# Streamlit et utilitaires
-streamlit
 rich
 markdown-it-py
 pygments
