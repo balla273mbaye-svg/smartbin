@@ -7,277 +7,104 @@
     <link rel="stylesheet" 
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 
+        /* --- Ton CSS existant, inchangé --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 
 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, 
 #2c5364 100%);
-            color: #fff;
-            min-height: 100vh;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(17, 153, 142, 0.3) 
-0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(56, 239, 125, 0.3) 
-0%, transparent 50%);
-            animation: pulse 10s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0.8; }
-        }
-
-        .header {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .header h1 {
-            font-size: 3.5em;
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1.2em;
-            color: #a0d8ef;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(56, 239, 125, 0.5);
-            box-shadow: 0 15px 40px rgba(56, 239, 125, 0.3);
-        }
-
-        .stat-card i {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-
-        .stat-card.full i { color: #ff6b6b; }
-        .stat-card.empty i { color: #51cf66; }
-        .stat-card.total i { color: #4dabf7; }
-        .stat-card.confidence i { color: #ffd93d; }
-
-        .stat-value {
-            font-size: 3em;
-            font-weight: 800;
-            display: block;
-            margin: 10px 0;
-        }
-
-        .stat-label {
-            font-size: 1.1em;
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .upload-section {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 40px;
-            margin-bottom: 40px;
-        }
-
-        .upload-area {
-            border: 3px dashed rgba(56, 239, 125, 0.5);
-            border-radius: 20px;
-            padding: 80px 40px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(56, 239, 125, 0.05);
-        }
-
-        .upload-area:hover {
-            border-color: #38ef7d;
-            background: rgba(56, 239, 125, 0.15);
-            transform: scale(1.02);
-        }
-
-        .upload-icon {
-            font-size: 5em;
-            color: #38ef7d;
-            margin-bottom: 20px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .btn-analyze {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            border: none;
-            color: white;
-            padding: 20px 60px;
-            border-radius: 15px;
-            font-size: 1.3em;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 30px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(56, 239, 125, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .btn-analyze:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(56, 239, 125, 0.6);
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.2em;
-            font-weight: 700;
-            margin: 20px 0;
-        }
-
-        .status-badge.alert {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-            box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
-        }
-
-        .status-badge.ok {
-            background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
-            box-shadow: 0 0 30px rgba(81, 207, 102, 0.5);
-        }
-
-        .status-badge.mixed {
-            background: linear-gradient(135deg, #ffd93d 0%, #ff9800 100%);
-            box-shadow: 0 0 30px rgba(255, 217, 61, 0.5);
-        }
-
-        .results-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .result-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-        }
-
-        .result-card h3 {
-            color: #38ef7d;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .result-card img {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .detections-list {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .detection-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            border-left: 4px solid;
-        }
-
-        .detection-item.full { border-left-color: #ff6b6b; }
-        .detection-item.empty { border-left-color: #51cf66; }
-
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 60px;
-        }
-
-        .loading.active {
-            display: block;
-        }
-
-        .spinner {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 30px;
-            border: 6px solid rgba(255, 255, 255, 0.1);
-            border-top: 6px solid #38ef7d;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @media (max-width: 968px) {
-            .results-section { grid-template-columns: 1fr; }
-            .header h1 { font-size: 2.5em; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+            color: #fff; min-height: 100vh; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; 
+width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(17, 153, 
+142, 0.3) 0%, transparent 50%),
+                       radial-gradient(circle at 80% 80%, rgba(56, 239, 
+125, 0.3) 0%, transparent 50%);
+            animation: pulse 10s ease-in-out infinite; z-index: -1; }
+        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.8; 
+} }
+        .header { background: rgba(255,255,255,0.05); backdrop-filter: 
+blur(20px); 
+            border-bottom: 1px solid rgba(255,255,255,0.1); padding: 30px 
+20px; text-align:center;
+            box-shadow:0 8px 32px rgba(0,0,0,0.3); }
+        .header h1 { font-size:3.5em; background: linear-gradient(135deg, 
+#11998e 0%, #38ef7d 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: 
+transparent; margin-bottom:10px; }
+        .header p { font-size:1.2em; color:#a0d8ef; }
+        .container { max-width:1400px; margin:40px auto; padding:0 20px; }
+        .stats-grid { display:grid; grid-template-columns:repeat(auto-fit, 
+minmax(250px, 1fr)); gap:25px; margin-bottom:40px; }
+        .stat-card { background: rgba(255,255,255,0.05); backdrop-filter: 
+blur(20px); border:1px solid rgba(255,255,255,0.1);
+            border-radius:20px; padding:30px; text-align:center; 
+transition: all 0.3s ease; }
+        .stat-card:hover { transform:translateY(-10px); border-color: 
+rgba(56,239,125,0.5); box-shadow:0 15px 40px rgba(56,239,125,0.3); }
+        .stat-card i { font-size:3em; margin-bottom:15px; }
+        .stat-card.full i { color:#ff6b6b; }
+        .stat-card.empty i { color:#51cf66; }
+        .stat-card.total i { color:#4dabf7; }
+        .stat-card.confidence i { color:#ffd93d; }
+        .stat-value { font-size:3em; font-weight:800; display:block; 
+margin:10px 0; }
+        .stat-label { font-size:1.1em; opacity:0.8; 
+text-transform:uppercase; letter-spacing:2px; }
+        .upload-section { background: rgba(255,255,255,0.05); 
+backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.1);
+            border-radius:25px; padding:40px; margin-bottom:40px; }
+        .upload-area { border:3px dashed rgba(56,239,125,0.5); 
+border-radius:20px; padding:80px 40px; text-align:center; cursor:pointer;
+            transition: all 0.3s ease; background: rgba(56,239,125,0.05); 
+}
+        .upload-area:hover { border-color:#38ef7d; background: 
+rgba(56,239,125,0.15); transform: scale(1.02); }
+        .upload-icon { font-size:5em; color:#38ef7d; margin-bottom:20px; 
+animation:bounce 2s infinite; }
+        @keyframes bounce { 
+0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);} }
+        .btn-analyze { background: linear-gradient(135deg, #11998e 0%, 
+#38ef7d 100%); border:none; color:white;
+            padding:20px 60px; border-radius:15px; font-size:1.3em; 
+font-weight:700; cursor:pointer; margin-top:30px;
+            transition: all 0.3s ease; box-shadow:0 10px 30px 
+rgba(56,239,125,0.4); text-transform:uppercase; letter-spacing:2px; }
+        .btn-analyze:hover { transform:translateY(-5px) scale(1.05); 
+box-shadow:0 15px 40px rgba(56,239,125,0.6); }
+        .status-badge { display:inline-flex; align-items:center; gap:10px; 
+padding:15px 30px; border-radius:50px;
+            font-size:1.2em; font-weight:700; margin:20px 0; }
+        .status-badge.alert { background: linear-gradient(135deg, #ff6b6b 
+0%, #ee5a6f 100%); box-shadow:0 0 30px rgba(255,107,107,0.5);}
+        .status-badge.ok { background: linear-gradient(135deg, #51cf66 0%, 
+#37b24d 100%); box-shadow:0 0 30px rgba(81,207,102,0.5);}
+        .status-badge.mixed { background: linear-gradient(135deg, #ffd93d 
+0%, #ff9800 100%); box-shadow:0 0 30px rgba(255,217,61,0.5);}
+        .results-section { display:grid; grid-template-columns:1fr 1fr; 
+gap:30px; margin-top:40px; }
+        .result-card { background: rgba(255,255,255,0.05); 
+backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.1); 
+border-radius:20px; padding:30px; }
+        .result-card h3 { color:#38ef7d; margin-bottom:20px; 
+font-size:1.5em; display:flex; align-items:center; gap:10px; }
+        .result-card img { width:100%; border-radius:15px; box-shadow:0 
+8px 25px rgba(0,0,0,0.3); }
+        .detections-list { max-height:400px; overflow-y:auto; }
+        .detection-item { background: rgba(255,255,255,0.05); padding:15px 
+20px; border-radius:12px; margin-bottom:12px; border-left:4px solid; }
+        .detection-item.full { border-left-color:#ff6b6b; }
+        .detection-item.empty { border-left-color:#51cf66; }
+        .loading { display:none; text-align:center; padding:60px; }
+        .loading.active { display:block; }
+        .spinner { width:80px; height:80px; margin:0 auto 30px; border:6px 
+solid rgba(255,255,255,0.1); border-top:6px solid #38ef7d; 
+border-radius:50%; animation:spin 1s linear infinite; }
+        @keyframes spin { 
+0%{transform:rotate(0deg);}100%{transform:rotate(360deg);} }
+        @media(max-width:968px){ 
+.results-section{grid-template-columns:1fr;} .header h1{font-size:2.5em;} 
+.stats-grid{grid-template-columns:repeat(2,1fr);} }
     </style>
 </head>
 <body>
@@ -321,12 +148,12 @@ onclick="document.getElementById('fileInput').click()">
                     <i class="fas fa-cloud-upload-alt upload-icon"></i>
                     <h2 id="uploadText">Cliquez ou glissez une image 
 ici</h2>
-                    <p style="opacity: 0.7; margin-top: 15px;">JPG, PNG 
-(Max 16MB)</p>
+                    <p style="opacity:0.7; margin-top:15px;">JPG, PNG (Max 
+16MB)</p>
                 </div>
                 <input type="file" name="image" id="fileInput" 
-accept="image/*,video/*" style="display: none;">
-                <div style="text-align: center;">
+accept="image/*,video/*" style="display:none;">
+                <div style="text-align:center;">
                     <button type="submit" class="btn-analyze">
                         <i class="fas fa-search"></i> ANALYSER
                     </button>
@@ -341,7 +168,7 @@ accept="image/*,video/*" style="display: none;">
         </div>
 
         <!-- Status -->
-        <div style="text-align: center;">
+        <div style="text-align:center;">
             <div class="status-badge {{ status|slice:':1'|lower }}">
                 {{ status }}
             </div>
@@ -351,22 +178,32 @@ accept="image/*,video/*" style="display: none;">
         <div class="results-section">
             <div class="result-card">
                 <h3><i class="fas fa-upload"></i> Original</h3>
-                <img src="/media/{{ uploaded_image }}" alt="Original">
+                {% if uploaded_image %}
+                    <img src="{{ uploaded_image.url }}" alt="Original">
+                {% endif %}
             </div>
             <div class="result-card">
                 <h3><i class="fas fa-brain"></i> Résultat</h3>
-                <img src="/media/{{ result_image }}" alt="Résultat">
+                {% if result_image %}
+                    <img src="{{ result_image.url }}" alt="Résultat">
+                {% endif %}
             </div>
         </div>
 
         <!-- Detections -->
-        <div class="result-card" style="margin-top: 30px;">
+        <div class="result-card" style="margin-top:30px;">
             <h3><i class="fas fa-list-ul"></i> Détections</h3>
             <div class="detections-list">
                 {% for d in detections %}
-                <div class="detection-item empty">
-                    <strong>{{ d }}</strong>
-                </div>
+                    {% if "plein" in d|lower or "full" in d|lower %}
+                        <div class="detection-item full">
+                            <strong>{{ d }}</strong>
+                        </div>
+                    {% else %}
+                        <div class="detection-item empty">
+                            <strong>{{ d }}</strong>
+                        </div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -389,3 +226,4 @@ function() {
     </script>
 </body>
 </html>
+
