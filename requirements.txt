@@ -1,18 +1,23 @@
-# Django et serveur
+# Django
 Django>=5.0,<6.0
+
+# Serveur
 gunicorn
 whitenoise
 
-# Gestion d’images
+# Images et traitement
 Pillow
 numpy
 opencv-python-headless
 
-# YOLO et PyTorch (CPU uniquement)
-ultralytics==8.0.152
+# Deep Learning / Détection d'objets
 torch==2.3.1+cpu
-torchvision==0.17.1+cpu
--f https://download.pytorch.org/whl/cpu/torch_stable.html
+torchvision==0.14.1+cpu
+ultralytics==8.0.9
 
-# Télécharger fichiers si besoin (facultatif)
-gdown
+# Streamlit et utilitaires
+streamlit
+rich
+markdown-it-py
+pygments
+mdurl
